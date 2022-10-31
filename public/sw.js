@@ -1,4 +1,7 @@
 // imports
+importScripts('https://cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js')
+
+importScripts('js/sw-db.js');
 importScripts('js/sw-utils.js');
 
 
