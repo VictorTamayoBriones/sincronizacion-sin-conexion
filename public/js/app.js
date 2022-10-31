@@ -118,6 +118,7 @@ nuevoBtn.on('click', function() {
 
 });
 
+
 // Boton de cancelar mensaje
 cancelarBtn.on('click', function() {
     if ( !modal.hasClass('oculto') ) {
@@ -145,6 +146,7 @@ postBtn.on('click', function() {
         user: usuario
     };
 
+
     fetch('api', {
         method: 'POST',
         headers: {
@@ -157,9 +159,12 @@ postBtn.on('click', function() {
     .catch( err => console.log( 'app.js error:', err ));
 
 
+
     crearMensajeHTML( mensaje, usuario );
 
 });
+
+
 
 // Obtener mensajes del servidor
 function getMensajes() {
@@ -179,3 +184,35 @@ function getMensajes() {
 }
 
 getMensajes();
+
+
+
+// Detectar cambios de conexión
+function isOnline() {
+
+    if ( navigator.onLine ) {
+        // tenemos conexión
+        // console.log('online');
+        $.mdtoast('Online', {
+            interaction: true,
+            interactionTimeout: 1000,
+            actionText: 'OK!'
+        });
+
+
+    } else{
+        // No tenemos conexión
+        $.mdtoast('Offline', {
+            interaction: true,
+            actionText: 'OK',
+            type: 'warning'
+        });
+    }
+
+}
+
+window.addEventListener('online', isOnline );
+window.addEventListener('offline', isOnline );
+
+isOnline();
+
